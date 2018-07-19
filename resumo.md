@@ -102,3 +102,9 @@ Quand on mes un dictionaire en parametre on doit le mettre avec 2 etoiles:
 
 1. agent = Agent(agent_attibutes)
 2. agent = Agent(**agent_attibutes)
+
+# (P2C4)
+
+Le commit "C" deverait etre:
+
+"Creation de la classe Position"
