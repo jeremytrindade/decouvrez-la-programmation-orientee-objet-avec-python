@@ -41,3 +41,46 @@
 3. La programmation
     1. Réaliser le diagramme de classe
     2. Coder
+
+# (P1C3)
+
+## 2 types de graphiques: 
+
+1. Agréabilité vs Densité de population
+2. Age vs Revenus
+
+## Les objets:
+
+Agent
+Position
+Zone
+Graph
+
+## Chaque objet a des atribut et des methodes
+Atribut - une proprieter specifique a cette objet
+Methode - c'est une action que peut realiser uniquement cette objet
+
+Atribut = a:
+Methode = m:
+
+### Agent
+a: agreeability: Float
+a: position: Position
+m: initialisation()
+
+### position
+a: latitude: Float
+a: longitude: Float
+m: initialisation()
+
+### Zone
+a: corner1: Position
+a: corner2: Position
+m: initialisation()
+m: population()
+m: population_density()
+
+### Graph
+a: x: Float
+a: y: Float
+m: initialisation()
