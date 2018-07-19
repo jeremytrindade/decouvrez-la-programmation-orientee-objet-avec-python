@@ -1,4 +1,4 @@
-# decouvrez-la-programmation-orientee-objet-avec-python
+# Decouvrez-la-programmation-orientee-objet-avec-python
 ### https://openclassrooms.com/fr/courses/4302126-decouvrez-la-programmation-orientee-objet-avec-python?status=published
 C'est un des cours qui fait partie de la formation:
 ### DÉVELOPPEUR D'APPLICATION - PYTHON de OPENCLASSROOMS
