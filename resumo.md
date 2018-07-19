@@ -57,10 +57,13 @@ Zone
 Graph
 
 ## Chaque objet a des atribut et des methodes
-Atribut - une proprieter specifique a cette objet
-Methode - c'est une action que peut realiser uniquement cette objet
+
+Atribut - une proprieter specifique a cette objet.
+
+Methode - c'est une action que peut realiser uniquement cette objet.
 
 Atribut = a:
+
 Methode = m:
 
 ### Agent
