@@ -87,3 +87,8 @@ m: population_density()
 a: x: Float
 a: y: Float
 m: initialisation()
+
+# (P2C2)
+
+Quand on créer une methode le premier parametre par convention est "self":
+def say_hello(self, first_name):
