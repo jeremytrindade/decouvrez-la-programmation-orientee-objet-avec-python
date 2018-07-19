@@ -92,3 +92,13 @@ m: initialisation()
 
 Quand on créer une methode le premier parametre par convention est "self":
 def say_hello(self, first_name):
+
+# (P2C3)
+
+Quand on mes un dictionaire en parametre on doit le mettre avec 2 etoiles:
+
+1. def __init__(self, agent_attributes):
+2. def __init__(self, **agent_attributes):
+
+1. agent = Agent(agent_attibutes)
+2. agent = Agent(**agent_attibutes)
