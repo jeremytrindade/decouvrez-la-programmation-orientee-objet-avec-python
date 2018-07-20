@@ -19,6 +19,38 @@ class Position:
     def longitude(self):
         # return 6 # pour voir si ça fonction
         return self.longitude_degrees * math.pi /180
+    
+    @property
+    def latitude(self):
+        # return 6 # pour voir si ça fonction
+        return self.latitude_degrees * math.pi /180
+
+class Zone:
+
+    ZONE = []
+    MIN_LONGITUDE_DEGREES = -180
+    MAX_LONGITUDE_DEGREES = 180
+    MIN_LATITUDE_DEGREES = -90
+    MAX_LATITUDE_DEGREES = 90
+    WIDTH_DEGREES = 1
+    HEIGHT_DEGREES = 1
+
+    def __init__(self, corner1, corner2):
+        self.corner1 = corner1
+        self.corner2 = corner2
+        self.inhabitants = 0
+
+    @classmethod # etand donner qu'on ne sommes plus dans l'instance, masi oui dans la classe il faut changer self par cls
+    def initialize_zones(cls):
+        for latitude in range(cls.MIN_LATITUDE_DEGREES, cls.MAX_LATITUDE_DEGREES):
+            for longitude in range(cls.MIN_LONGITUDE_DEGREES, cls.MAX_LONGITUDE_DEGREES, WIDTH_DEGREES):
+                bottom_left_corner = Position(longitude, latitude)
+                top_right_corner = Position(longitude + cls.WIDTH_DEGREES, latitude + cls.HEIGHT_DEGREES)
+                zone = Zone(bottom_left_corner, top_right_corner)
+                cls.ZONE.append(zone)
+                #zone = Zone(bottem_letf_corner, top_right_corner)
+        print(len(cls.ZONES))
+
 
 def main():
     
@@ -27,6 +59,6 @@ def main():
         longitude = agent_attributes.pop('longitude')
         position = Position(longitude, latitude)
         agent = Agent(position, **agent_attributes)
-        print(agent.position.longitude)
+        Zone.initialize_zones()
 
 main()
