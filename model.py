@@ -43,13 +43,13 @@ class Zone:
     @classmethod # etand donner qu'on ne sommes plus dans l'instance, masi oui dans la classe il faut changer self par cls
     def initialize_zones(cls):
         for latitude in range(cls.MIN_LATITUDE_DEGREES, cls.MAX_LATITUDE_DEGREES):
-            for longitude in range(cls.MIN_LONGITUDE_DEGREES, cls.MAX_LONGITUDE_DEGREES, WIDTH_DEGREES):
+            for longitude in range(cls.MIN_LONGITUDE_DEGREES, cls.MAX_LONGITUDE_DEGREES, cls.WIDTH_DEGREES):
                 bottom_left_corner = Position(longitude, latitude)
                 top_right_corner = Position(longitude + cls.WIDTH_DEGREES, latitude + cls.HEIGHT_DEGREES)
                 zone = Zone(bottom_left_corner, top_right_corner)
                 cls.ZONE.append(zone)
                 #zone = Zone(bottem_letf_corner, top_right_corner)
-        print(len(cls.ZONES))
+        print(len(cls.ZONE))
 
 
 def main():
