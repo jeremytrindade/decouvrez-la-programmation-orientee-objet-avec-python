@@ -143,7 +143,7 @@ class AgreeablenessGraph(BaseGraph):
 
     def xy_values(self, zones):
         x_values = [zone.population_density() for zone in zones]
-        x_values = [zone.average_agreeableness() for zone in zones]
+        y_values = [zone.average_agreeableness() for zone in zones]
         return x_values, y_values
         
 
@@ -160,7 +160,7 @@ def main():
         # print(zone.average_agreeableness())
 
     # Graph initialization
-    agreeableness_graph = agreeablenessGraph()
+    agreeableness_graph = AgreeablenessGraph()
     # Show graph
     agreeableness_graph.show(Zone.ZONES)
 
