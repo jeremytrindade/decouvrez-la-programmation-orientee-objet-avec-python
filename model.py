@@ -157,7 +157,7 @@ def main():
         agent = Agent(position, **agent_attributes)
         zone = Zone.find_zone_that_contains(position)
         zone.add_inhabitant(agent)
-        print(zone.average_agreeableness())
+        # print(zone.average_agreeableness())
 
     # Graph initialization
     agreeableness_graph = agreeablenessGraph()
