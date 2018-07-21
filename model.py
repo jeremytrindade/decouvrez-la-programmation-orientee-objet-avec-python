@@ -1,6 +1,12 @@
 import json
 import math
 
+# import pip
+# pip.main(["install","matplotlib"])
+
+# import matplotlib
+# matplotlib.__file__
+
 import matplotlib as mil
 mil.use('TkAgg')
 import matplotlib.pyplot as plt
