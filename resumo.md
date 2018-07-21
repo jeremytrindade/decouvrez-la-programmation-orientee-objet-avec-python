@@ -124,3 +124,13 @@ return sum(agreeableness) / self.population
 
 peu etre traduit dans une ligne de code:
 return sum([inhabitant.agreeableness for inhabitant in self.inhabitants]) / self.population
+
+# (P4C2)
+
+Matplotlib à un bug sur mac alors pour l'importer c'est special, au lieu de metre simplement "import matplotlib.pyplot as plt" il faut metre tout ça:
+
+import matplotlib as mil
+
+mil.use('TkAgg')
+
+import matplotlib.pyplot as plt

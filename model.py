@@ -1,5 +1,10 @@
 import json
 import math
+
+import matplotlib as mil # Pour mac
+mil.use('TkAgg') # pour mac
+import matplotlib.pyplot as plt
+
 class Agent:
     
     def say_hello(self, first_name):
@@ -60,6 +65,9 @@ class Zone:
     def area(self):
         return self.height *self.width
 
+    def population_density(self):
+        return self.population / self.area
+
     @classmethod # etand donner qu'on ne sommes plus dans l'instance, masi oui dans la classe il faut changer self par cls
     def _initialize_zones(cls):
         for latitude in range(cls.MIN_LATITUDE_DEGREES, cls.MAX_LATITUDE_DEGREES):
@@ -97,12 +105,41 @@ class Zone:
     def average_agreeableness(self):
         if not self.inhabitants:
             return 0
-        #agreeableness = []
-        #for inhabitant in self.inhabitants:
-        #    agreeableness.append(inhabitant.agreeableness)
         return sum([inhabitant.agreeableness for inhabitant in self.inhabitants]) / self.population
         
+class BaseGraph:
 
+    def __init__(self):
+        self.title = "Your graph title"
+        self.x_label = "X-axis label"
+        self.y_label = "Y-axis label"
+        self.show_grid = True
+
+    def show(self, zones):
+        x_values , y_values = self.xy_values(zones)
+        plt.plot(x_values, y_values, '.')
+        plot.xlabel(self.x_label)
+        plot.ylabel(self.y_label)
+        plt.title(self.title)
+        plt.grid(self.show_grid)
+        plt.show()
+
+    def xy_values(self, zones):
+        raise NotImplementedError
+
+class AgreeablenessGraph(BaseGraph):
+
+    def __init__(self):
+        super().__init__()
+        self.title = "Nice people live in the countryside"
+        self.x_label = "population density"
+        self.y_label = "agreeableness"
+
+    def xy_values(self, zones):
+        x_values [zone.population_density() for zone in zones]
+        x_values [zone.average_agreeableness() for zone in zones]
+        return x_values, y_values
+        
 
 
 def main():
@@ -115,6 +152,11 @@ def main():
         zone = Zone.find_zone_that_contains(position)
         zone.add_inhabitant(agent)
         print(zone.average_agreeableness())
+
+    # Graph initialization
+    agreeableness_graph = agreeablenessGraph()
+    # Show graph
+    agreeableness_graph.show(Zone.ZONES)
 
 
 main()
