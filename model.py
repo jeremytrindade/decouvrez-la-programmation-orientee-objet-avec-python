@@ -124,8 +124,8 @@ class BaseGraph:
     def show(self, zones):
         x_values , y_values = self.xy_values(zones)
         plt.plot(x_values, y_values, '.')
-        plot.xlabel(self.x_label)
-        plot.ylabel(self.y_label)
+        plt.xlabel(self.x_label)
+        plt.ylabel(self.y_label)
         plt.title(self.title)
         plt.grid(self.show_grid)
         plt.show()
