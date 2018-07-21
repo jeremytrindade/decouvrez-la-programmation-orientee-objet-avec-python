@@ -108,3 +108,19 @@ Quand on mes un dictionaire en parametre on doit le mettre avec 2 etoiles:
 Le commit "C" deverait etre:
 
 "Creation de la classe Position"
+
+# (P3C4)
+
+## Encapsulation
+
+# (P4C1)
+
+## List Comprehension
+
+agreeableness = []
+for inhabitant in self.inhabitants:
+    agreeableness.append(inhabitant.agreeableness)
+return sum(agreeableness) / self.population
+
+peu etre traduit dans une ligne de code:
+return sum([inhabitant.agreeableness for inhabitant in self.inhabitants]) / self.population

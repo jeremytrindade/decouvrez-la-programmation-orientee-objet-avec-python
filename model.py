@@ -27,13 +27,14 @@ class Position:
 
 class Zone:
 
-    ZONE = []
+    ZONES = []
     MIN_LONGITUDE_DEGREES = -180
     MAX_LONGITUDE_DEGREES = 180
     MIN_LATITUDE_DEGREES = -90
     MAX_LATITUDE_DEGREES = 90
     WIDTH_DEGREES = 1
     HEIGHT_DEGREES = 1
+    EARTH_RADIUS_KILOMETERES = 6371
 
     def __init__(self, corner1, corner2):
         self.corner1 = corner1
@@ -47,6 +48,18 @@ class Zone:
     def population(self):
         return len(self.inhabitants)
 
+    @property
+    def width(self):
+        return abs(self.corner1.longitude - self.corner2.longitude) * self.EARTH_RADIUS_KILOMETERES
+
+    @property
+    def height(self):
+        return abs(self.corner1.latitude - self.corner2.latitude) * self.EARTH_RADIUS_KILOMETERES
+
+    @property
+    def area(self):
+        return self.height *self.width
+
     @classmethod # etand donner qu'on ne sommes plus dans l'instance, masi oui dans la classe il faut changer self par cls
     def _initialize_zones(cls):
         for latitude in range(cls.MIN_LATITUDE_DEGREES, cls.MAX_LATITUDE_DEGREES):
@@ -54,9 +67,9 @@ class Zone:
                 bottom_left_corner = Position(longitude, latitude)
                 top_right_corner = Position(longitude + cls.WIDTH_DEGREES, latitude + cls.HEIGHT_DEGREES)
                 zone = Zone(bottom_left_corner, top_right_corner)
-                cls.ZONE.append(zone)
+                cls.ZONES.append(zone)
                 #zone = Zone(bottem_letf_corner, top_right_corner)
-        print(len(cls.ZONE))
+        print(len(cls.ZONES))
 
     def contains(self, position):
         return position.longitude >= min(self.corner1.longitude, self.corner2.longitude) and \
@@ -67,7 +80,7 @@ class Zone:
     @classmethod
     def find_zone_that_contains(cls, position):
         # Compute the index in the ZONES array that contains the given position
-        if not cls.ZONE:
+        if not cls.ZONES:
             cls._initialize_zones()
         longitude_index = int((position.longitude_degrees - cls.MIN_LONGITUDE_DEGREES)/ cls.WIDTH_DEGREES)
         latitude_index = int((position.latitude_degrees - cls.MIN_LATITUDE_DEGREES)/ cls.HEIGHT_DEGREES)
@@ -75,10 +88,20 @@ class Zone:
         zone_index = latitude_index * longitude_bins + longitude_index
 
         # Just checking that the index is correct
-        zone = cls.ZONE[zone_index]
+        zone = cls.ZONES[zone_index]
         assert zone.contains(position)
 
         return zone
+
+
+    def average_agreeableness(self):
+        if not self.inhabitants:
+            return 0
+        #agreeableness = []
+        #for inhabitant in self.inhabitants:
+        #    agreeableness.append(inhabitant.agreeableness)
+        return sum([inhabitant.agreeableness for inhabitant in self.inhabitants]) / self.population
+        
 
 
 
@@ -91,7 +114,7 @@ def main():
         agent = Agent(position, **agent_attributes)
         zone = Zone.find_zone_that_contains(position)
         zone.add_inhabitant(agent)
-        print(zone.population)
+        print(zone.average_agreeableness())
 
 
 main()
